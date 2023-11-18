@@ -22,7 +22,7 @@ class BaseHumanoid(LocoEnv):
     valid_task_confs = ValidTaskConf(tasks=["walk", "run"],
                                      data_types=["real"])
 
-    def __init__(self, use_muscles=False, use_box_feet=True, disable_arms=True, alpha_box_feet=0.5, **kwargs):
+    def __init__(self, use_muscles=False, use_box_feet=True, disable_arms=True, use_changed_knee=True, use_stiffness=True, alpha_box_feet=0.5, **kwargs):
         """
         Constructor.
 
@@ -35,8 +35,16 @@ class BaseHumanoid(LocoEnv):
 
         """
         if use_muscles:
-            xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /
-                        "humanoid_muscle.xml").as_posix()
+            if use_changed_knee:
+                if use_stiffness:
+                    xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /
+                                "humanoid_muscle_changed_knee.xml").as_posix()
+                else:
+                    xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /
+                                "humanoid_muscle_changed_knee_no_stiffness.xml").as_posix()
+            else:
+                xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /
+                            "humanoid_muscle.xml").as_posix()
         else:
             xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /
                         "humanoid_torque.xml").as_posix()

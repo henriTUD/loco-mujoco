@@ -22,7 +22,8 @@ class BaseHumanoid(LocoEnv):
     valid_task_confs = ValidTaskConf(tasks=["walk", "run"],
                                      data_types=["real"])
 
-    def __init__(self, use_muscles=False, use_box_feet=True, disable_arms=True, use_changed_knee=True, use_stiffness=True, alpha_box_feet=0.5, **kwargs):
+    def __init__(self, use_muscles=False, use_box_feet=True, disable_arms=True, use_changed_knee=True,
+                 use_stiffness=True, custom_range=None, alpha_box_feet=0.5, **kwargs):
         """
         Constructor.
 
@@ -73,7 +74,21 @@ class BaseHumanoid(LocoEnv):
             if self._disable_arms:
                 xml_handle = self._reorient_arms(xml_handle)
 
+        if custom_range is not None:
+            xml_handle = self._set_range_in_xml_handle(xml_handle, custom_range)
+
         super().__init__(xml_handle, action_spec, observation_spec, collision_groups, **kwargs)
+
+    @staticmethod
+    def _set_range_in_xml_handle(xml_handle, new_range):
+        if new_range[0] < 0.5:
+            xml_handle.default.muscle.lmin = new_range[0]
+        if new_range[1] > 1.6:
+            xml_handle.default.muscle.lmax = new_range[1]
+
+        xml_handle.default.muscle.range[0] = new_range[0]
+        xml_handle.default.muscle.range[1] = new_range[1]
+        return xml_handle
 
     def create_dataset(self, ignore_keys=None):
         """

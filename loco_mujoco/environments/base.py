@@ -227,7 +227,7 @@ class LocoEnv(MultiMuJoCo):
                     sample = self.trajectories.reset_trajectory()
                 elif self._init_step_no:
                     traj_len = self.trajectories.trajectory_length
-                    n_traj = self.trajectories.number_of_trajectories
+                    n_traj = 1 #n_traj = self.trajectories.number_of_trajectories
                     assert self._init_step_no <= traj_len * n_traj
                     substep_no = int(self._init_step_no % traj_len)
                     traj_no = int(self._init_step_no / traj_len)
@@ -545,9 +545,13 @@ class LocoEnv(MultiMuJoCo):
 
         """
 
+        grf_fact = 0.001
+        if self._get_grf_size() == 6:
+            grf_fact = np.array([0.001, 0.01, 0.01, 0.001, 0.01, 0.01])
+
         if self._use_foot_forces:
             obs = np.concatenate([obs[2:],
-                                  self.mean_grf.mean / 1000.,
+                                  self.mean_grf.mean * grf_fact,
                                   ]).flatten()
         else:
             obs = np.concatenate([obs[2:],

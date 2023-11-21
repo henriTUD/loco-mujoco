@@ -1205,10 +1205,10 @@
     <muscle name="quad_fem_r" tendon="quad_fem_r_tendon" timeconst="    0.01     0.04" force="381" lengthrange="0.050161 0.103273"></muscle>
     <muscle name="gem_r" tendon="gem_r_tendon" timeconst="    0.01     0.04" force="164" lengthrange="0.0493334 0.0725491"></muscle>
     <muscle name="peri_r" tendon="peri_r_tendon" timeconst="    0.01     0.04" force="444" lengthrange="0.127586 0.153147"></muscle>
-    <muscle name="rect_fem_r" tendon="rect_fem_r_tendon" timeconst="    0.01     0.04" force="1169" lengthrange="0.333385  0.49161"></muscle>
-    <muscle name="vas_med_r" tendon="vas_med_r_tendon" timeconst="    0.01     0.04" force="1294" lengthrange="0.153639 0.273612"></muscle>
-    <muscle name="vas_int_r" tendon="vas_int_r_tendon" timeconst="    0.01     0.04" force="1365" lengthrange="0.161238 0.279306"></muscle>
-    <muscle name="vas_lat_r" tendon="vas_lat_r_tendon" timeconst="    0.01     0.04" force="1871" lengthrange="0.179887 0.295591"></muscle>
+    <muscle name="rect_fem_r" tendon="rect_fem_r_tendon" timeconst="    0.01     0.04" force="1169" lengthrange="0.333385  0.48661"></muscle>
+    <muscle name="vas_med_r" tendon="vas_med_r_tendon" timeconst="    0.01     0.04" force="1294" lengthrange="0.153639 0.268612"></muscle>
+    <muscle name="vas_int_r" tendon="vas_int_r_tendon" timeconst="    0.01     0.04" force="1365" lengthrange="0.161238 0.274306"></muscle>
+    <muscle name="vas_lat_r" tendon="vas_lat_r_tendon" timeconst="    0.01     0.04" force="1871" lengthrange="0.179887 0.290591"></muscle>
     <muscle name="med_gas_r" tendon="med_gas_r_tendon" timeconst="    0.01     0.04" force="1558" lengthrange="0.467428 0.531486"></muscle>
     <muscle name="lat_gas_r" tendon="lat_gas_r_tendon" timeconst="    0.01     0.04" force="683" lengthrange="0.460271 0.531127"></muscle>
     <muscle name="soleus_r" tendon="soleus_r_tendon" timeconst="    0.01     0.04" force="3549" lengthrange="0.305933 0.356779"></muscle>
@@ -1248,10 +1248,10 @@
     <muscle name="quad_fem_l" tendon="quad_fem_l_tendon" timeconst="    0.01     0.04" force="381" lengthrange="0.050161 0.103273"></muscle>
     <muscle name="gem_l" tendon="gem_l_tendon" timeconst="    0.01     0.04" force="164" lengthrange="0.0493334 0.0725491"></muscle>
     <muscle name="peri_l" tendon="peri_l_tendon" timeconst="    0.01     0.04" force="444" lengthrange="0.127586 0.153147"></muscle>
-    <muscle name="rect_fem_l" tendon="rect_fem_l_tendon" timeconst="    0.01     0.04" force="1169" lengthrange="0.333385  0.49161"></muscle>
-    <muscle name="vas_med_l" tendon="vas_med_l_tendon" timeconst="    0.01     0.04" force="1294" lengthrange="0.153639 0.273612"></muscle>
-    <muscle name="vas_int_l" tendon="vas_int_l_tendon" timeconst="    0.01     0.04" force="1365" lengthrange="0.161238 0.279306"></muscle>
-    <muscle name="vas_lat_l" tendon="vas_lat_l_tendon" timeconst="    0.01     0.04" force="1871" lengthrange="0.179887 0.295591"></muscle>
+    <muscle name="rect_fem_l" tendon="rect_fem_l_tendon" timeconst="    0.01     0.04" force="1169" lengthrange="0.333385  0.48661"></muscle>
+    <muscle name="vas_med_l" tendon="vas_med_l_tendon" timeconst="    0.01     0.04" force="1294" lengthrange="0.153639 0.268612"></muscle>
+    <muscle name="vas_int_l" tendon="vas_int_l_tendon" timeconst="    0.01     0.04" force="1365" lengthrange="0.161238 0.274306"></muscle>
+    <muscle name="vas_lat_l" tendon="vas_lat_l_tendon" timeconst="    0.01     0.04" force="1871" lengthrange="0.179887 0.290591"></muscle>
     <muscle name="med_gas_l" tendon="med_gas_l_tendon" timeconst="    0.01     0.04" force="1558" lengthrange="0.467428 0.531486"></muscle>
     <muscle name="lat_gas_l" tendon="lat_gas_l_tendon" timeconst="    0.01     0.04" force="683" lengthrange="0.460271 0.531127"></muscle>
     <muscle name="soleus_l" tendon="soleus_l_tendon" timeconst="    0.01     0.04" force="3549" lengthrange="0.305933 0.356779"></muscle>

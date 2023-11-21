@@ -23,7 +23,7 @@ class BaseHumanoid(LocoEnv):
                                      data_types=["real"])
 
     def __init__(self, use_muscles=False, use_box_feet=True, disable_arms=True, use_changed_knee=True,
-                 use_stiffness=True, custom_range=None, alpha_box_feet=0.5, **kwargs):
+                 use_stiffness=True, custom_muscle_xml=None, custom_range=None, alpha_box_feet=0.5, **kwargs):
         """
         Constructor.
 
@@ -36,15 +36,18 @@ class BaseHumanoid(LocoEnv):
 
         """
         if use_muscles:
-            if use_changed_knee:
-                if use_stiffness:
-                    xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /
+            if custom_muscle_xml is not None:
+                xml_path = custom_muscle_xml
+            else:
+                if use_changed_knee:
+                    if use_stiffness:
+                        xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /
                                 "humanoid_muscle_changed_knee.xml").as_posix()
+                    else:
+                        xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /
+                                "humanoid_muscle_changed_knee_no_stiffness.xml").as_posix()
                 else:
                     xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /
-                                "humanoid_muscle_changed_knee_no_stiffness.xml").as_posix()
-            else:
-                xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /
                             "humanoid_muscle.xml").as_posix()
         else:
             xml_path = (Path(__file__).resolve().parent.parent / "data" / "humanoid" /

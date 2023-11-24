@@ -21,7 +21,7 @@ from mushroom_rl.utils.record import VideoRecorder
 import loco_mujoco
 from loco_mujoco.utils import Trajectory
 from loco_mujoco.utils import NoReward, CustomReward,\
-    TargetVelocityReward, PosReward, DomainRandomizationHandler
+    TargetVelocityReward, PosReward, DomainRandomizationHandler, OutOfBoundsActionCost, ActionCost
 
 
 class LocoEnv(MultiMuJoCo):
@@ -659,6 +659,10 @@ class LocoEnv(MultiMuJoCo):
             assert len(x_idx) == 1
             x_idx = x_idx[0]
             reward_func = PosReward(pos_idx=x_idx)
+        elif reward_type == "out_of_bounds_action_cost":
+            reward_func = OutOfBoundsActionCost(**reward_params)
+        elif reward_type == "action_cost":
+            reward_func = ActionCost(**reward_params)
         elif reward_type is None:
             reward_func = NoReward()
         else:

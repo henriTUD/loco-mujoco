@@ -16,55 +16,9 @@
     <muscle scale="200" ctrlrange="0 1" ctrllimited="true" range="0.65 1.05"></muscle>
     <motor ctrlrange="-1.0 1.0" ctrllimited="true"></motor>
   </default>
-  <option integrator="Euler" iterations="50" solver="Newton"  timestep="0.001" collision="all">
+  <option integrator="Euler" iterations="50" solver="Newton"  timestep="0.001" collision="dynamic">
     <flag energy="enable"></flag>
   </option>
-  <contact>
-      <pair geom1="floor" geom2="r_foot"/>
-      <pair geom1="floor" geom2="r_bofoot"/>
-      <pair geom1="floor" geom2="l_foot"/>
-      <pair geom1="floor" geom2="l_bofoot"/>
-      <pair geom1="r_foot" geom2="femur_l"/>
-      <pair geom1="r_bofoot" geom2="femur_l"/>
-      <pair geom1="r_foot" geom2="tibia_l"/>
-      <pair geom1="r_bofoot" geom2="tibia_l"/>
-      <pair geom1="r_foot" geom2="fibula_l"/>
-      <pair geom1="r_bofoot" geom2="fibula_l"/>
-      <pair geom1="r_foot" geom2="talus_lv"/>
-      <pair geom1="r_bofoot" geom2="talus_lv"/>
-      <pair geom1="l_foot" geom2="femur_r"/>
-      <pair geom1="l_bofoot" geom2="femur_r"/>
-      <pair geom1="l_foot" geom2="tibia_r"/>
-      <pair geom1="l_bofoot" geom2="tibia_r"/>
-      <pair geom1="l_foot" geom2="fibula_r"/>
-      <pair geom1="l_bofoot" geom2="fibula_r"/>
-      <pair geom1="l_foot" geom2="talus_rv"/>
-      <pair geom1="l_bofoot" geom2="fibula_r"/>
-      <pair geom1="l_foot" geom2="r_foot"/>
-      <pair geom1="l_foot" geom2="r_bofoot"/>
-      <pair geom1="l_bofoot" geom2="r_foot"/>
-      <pair geom1="l_bofoot" geom2="r_bofoot"/>
-
-      <pair geom1="talus_rv" geom2="femur_l"/>
-      <pair geom1="talus_rv" geom2="tibia_l"/>
-      <pair geom1="talus_rv" geom2="fibula_l"/>
-      <pair geom1="talus_rv" geom2="talus_lv"/>
-      <pair geom1="talus_lv" geom2="femur_r"/>
-      <pair geom1="talus_lv" geom2="tibia_r"/>
-      <pair geom1="talus_lv" geom2="fibula_r"/>
-
-      <pair geom1="fibula_r" geom2="tibia_l"/>
-      <pair geom1="fibula_r" geom2="femur_l"/>
-      <pair geom1="fibula_r" geom2="fibula_l"/>
-      <pair geom1="fibula_l" geom2="tibia_r"/>
-      <pair geom1="fibula_l" geom2="femur_r"/>
-
-      <pair geom1="tibia_r" geom2="femur_l"/>
-      <pair geom1="tibia_r" geom2="tibia_l"/>
-      <pair geom1="tibia_l" geom2="femur_r"/>
-
-      <pair geom1="femur_r" geom2="femur_l"/>
-  </contact>
   <size njmax="1000" nconmax="400" nuser_jnt="1"></size>
   <worldbody>
     <geom name="floor" pos="0 0 0" size="200 200 0.125" type="plane" material="MatPlane" condim="3" group="2" rgba="0.8 0.9 0.8 1"></geom>

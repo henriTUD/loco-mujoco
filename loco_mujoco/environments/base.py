@@ -21,7 +21,8 @@ from mushroom_rl.utils.record import VideoRecorder
 import loco_mujoco
 from loco_mujoco.utils import Trajectory
 from loco_mujoco.utils import NoReward, CustomReward,\
-    TargetVelocityReward, PosReward, DomainRandomizationHandler, OutOfBoundsActionCost, ActionCost
+    TargetVelocityReward, PosReward, DomainRandomizationHandler, OutOfBoundsActionCost, ActionCost, \
+    ModulationDifferencePenalty
 
 
 class LocoEnv(MultiMuJoCo):
@@ -663,6 +664,8 @@ class LocoEnv(MultiMuJoCo):
             reward_func = OutOfBoundsActionCost(**reward_params)
         elif reward_type == "action_cost":
             reward_func = ActionCost(**reward_params)
+        elif reward_type == "modulation_difference_penalty":
+            reward_func = ModulationDifferencePenalty(**reward_params)
         elif reward_type is None:
             reward_func = NoReward()
         else:

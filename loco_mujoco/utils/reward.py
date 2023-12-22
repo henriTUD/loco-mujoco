@@ -157,3 +157,33 @@ class ActionCost(RewardInterface):
 
     def __call__(self, state, action, next_state, absorbing):
         return -1 * self.reward_scale * np.sum(self.func(action - self.action_mean))
+
+
+class ModulationDifferencePenalty(RewardInterface):
+
+    def __init__(self, action_space_modulator, cycle_percentage_predictors,
+                 reward_scale=1.0, func_type='abs'):
+        self.cycle_percentage_predictors = cycle_percentage_predictors
+        self.action_space_modulator = action_space_modulator
+
+        self.cycle_progress = np.zeros(len(cycle_percentage_predictors))
+
+        self.reward_scale = reward_scale
+
+        if func_type == 'abs':
+            self.func = np.abs
+        elif func_type == 'squared':
+            self.func = np.square
+        else:
+            raise Exception(f'{func_type} is not a valid function type!')
+
+    def __call__(self, state, action, next_state, absorbing):
+        self.cycle_progress = [channel.predict_cycle_percentage(state) for channel in
+                               self.cycle_percentage_predictors]
+
+        modulated_action = self.action_space_modulator.modulate_action(action, self.cycle_progress)
+
+        modulated_action_diff = action - modulated_action
+
+        return -1 * self.reward_scale * np.sum(self.func(modulated_action_diff))
+

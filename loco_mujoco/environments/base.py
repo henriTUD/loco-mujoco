@@ -35,7 +35,7 @@ class LocoEnv(MultiMuJoCo):
                  n_substeps=10,  reward_type=None, reward_params=None, traj_params=None, random_start=True,
                  init_step_no=None, timestep=0.001, use_foot_forces=False, default_camera_mode="follow",
                  use_absorbing_states=True, domain_randomization_config=None, parallel_dom_rand=True,
-                 N_worker_per_xml_dom_rand=4, **viewer_params):
+                 N_worker_per_xml_dom_rand=4, unnormalize_action=True, **viewer_params):
         """
         Constructor.
 
@@ -117,6 +117,8 @@ class LocoEnv(MultiMuJoCo):
 
         # optionally use foot forces in the observation space
         self._use_foot_forces = use_foot_forces
+
+        self._unnormalize_action = unnormalize_action
 
         self.info.observation_space = spaces.Box(*self._get_observation_space())
 
@@ -573,9 +575,11 @@ class LocoEnv(MultiMuJoCo):
             Unnormalized action (np.array) that is send to the environment;
 
         """
-
-        unnormalized_action = ((action.copy() * self.norm_act_delta) + self.norm_act_mean)
-        return unnormalized_action
+        if self._unnormalize_action:
+            unnormalized_action = ((action.copy() * self.norm_act_delta) + self.norm_act_mean)
+            return unnormalized_action
+        else:
+            return action.copy()
 
     def _simulation_post_step(self):
         """
@@ -938,6 +942,8 @@ class LocoEnv(MultiMuJoCo):
 
         """
         dataset_path = Path(loco_mujoco.__file__).resolve().parent.parent / "datasets"
+
+        print(dataset_path)
 
         print("Downloading Humanoid Datasets ...\n")
         dataset_path_humanoid = dataset_path / "humanoids"

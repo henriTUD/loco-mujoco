@@ -268,7 +268,6 @@ class BaseHumanoid(LocoEnv):
 
         if task == "walk":
             path = "datasets/humanoids/02-constspeed_reduced_humanoid.npz"
-            path = "/Users/henri-jacquesgeiss/Development/il_data_generation/DataGeneration/data_generation/FirasRecordedData/00_Datasets/03_converted_to_numpy/02-constspeed_reduced_humanoid.npz"
             use_mini_dataset = not os.path.exists(Path(loco_mujoco.__file__).resolve().parent.parent / path)
             if debug or use_mini_dataset:
                 if use_mini_dataset:

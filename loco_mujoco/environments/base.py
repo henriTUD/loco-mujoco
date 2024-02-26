@@ -22,7 +22,7 @@ import loco_mujoco
 from loco_mujoco.utils import Trajectory
 from loco_mujoco.utils import NoReward, CustomReward,\
     TargetVelocityReward, PosReward, DomainRandomizationHandler, OutOfBoundsActionCost, ActionCost, \
-    ModulationDifferencePenalty
+    ModulationDifferencePenalty, InBoundsBonus
 
 
 class LocoEnv(MultiMuJoCo):
@@ -668,6 +668,8 @@ class LocoEnv(MultiMuJoCo):
             reward_func = OutOfBoundsActionCost(**reward_params)
         elif reward_type == "action_cost":
             reward_func = ActionCost(**reward_params)
+        elif reward_type == "in_bounds_bonus":
+            reward_func = InBoundsBonus(**reward_params)
         elif reward_type == "modulation_difference_penalty":
             reward_func = ModulationDifferencePenalty(**reward_params)
         elif reward_type is None:

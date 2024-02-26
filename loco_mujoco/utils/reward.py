@@ -159,6 +159,19 @@ class ActionCost(RewardInterface):
         return -1 * self.reward_scale * np.sum(self.func(action - self.action_mean))
 
 
+class InBoundsBonus(RewardInterface):
+
+    def __init__(self, lower_bound, upper_bound, reward_scale=1.0, bonus_val=1.0):
+        self.lower_bound = lower_bound
+        self.upper_bound = upper_bound
+        self.reward_scale = reward_scale
+        self.bonus_val = bonus_val
+
+    def __call__(self, state, action, next_state, absorbing):
+        bonus = self.bonus_val * ((self.upper_bound > action) * (action > self.lower_bound))
+        return self.reward_scale * np.sum(bonus)
+
+
 class ModulationDifferencePenalty(RewardInterface):
 
     def __init__(self, action_space_modulator, cycle_percentage_predictors,
